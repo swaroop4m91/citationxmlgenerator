@@ -17,6 +17,9 @@ const updateXmlContent = () => {
     textLines.value=fileContent.value.split('\n')
     textLines.value.forEach((fileLine) => {
         const line = fileLine.trim();
+        if(!line) {
+            return;
+        }
         const index = line.lastIndexOf('-');
         const entryValue = line.substring(0, index);
         const referenceValue = line.substring(index + 1, line.length);
@@ -64,17 +67,23 @@ const initializeFileContent = () => {
 
 <template>
     <div class="citation-view-box">
-        <div style="width: 50%;white-space: pre-line;">
+        <div style="width: 50%;white-space: pre-line;margin: 20px;" >
             <div style="text-align: center;"><h2>File Content</h2></div>
-            <textarea v-model="fileContent" rows="50" cols="120" :placeholder="textAreaPlaceHolder" @change="updateXmlContent"></textarea>
+            <div>
+                <textarea style="width: 100%;height: 500px" v-model="fileContent"  :placeholder="textAreaPlaceHolder" @change="updateXmlContent"></textarea>
+            </div>
             <div> 
                 <button @click="initializeFileContent">Upload File</button>
             </div>
         </div>
-        <div>
+        <div style="width: 50%;margin: 20px;">
             <div style="text-align: center;"><h2>Xml Content</h2></div>
-            <textarea v-model="xmlContent" rows="50" cols="120"></textarea>
-            <button @click="downloadXmlContent">Download</button>
+            <div>
+                <textarea v-model="xmlContent" style="width: 100%;height: 500px"></textarea>
+            </div>
+            <div>
+                <button @click="downloadXmlContent">Download</button>
+            </div>
         </div>
     </div>
 </template>
