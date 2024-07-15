@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VueElement, ref } from 'vue';
+import { ref } from 'vue';
 import formatXml from 'xml-formatter';
 import { saveAs } from 'file-saver';
 const fileContent = ref('');
